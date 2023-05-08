@@ -1,0 +1,30 @@
+.container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .slider {
+    display: flex;
+    height: 400px;
+    width: 100%;
+  }
+  
+  .slide {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 1s ease;
+  }
+  
+  .slide.active {
+    opacity: 1;
+  }
+  
+  .slide:first-child {
+    position: static;
+  }
+  

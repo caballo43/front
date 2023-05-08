@@ -1,25 +1,260 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useState, useEffect } from "react";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  NavLink,
+} from "react-router-dom";
+import Inicio from "./pages/Inicio";
+import Error from "./pages/Error";
+import Usuarios from "./pages/Usuarios";
+import Peliculas from "./pages/Peliculas";
+import Logout from "./pages/Logout";
+import Login from "./pages/Login";
+import Alta from "./pages/Alta";
+
+import Buscar from "./pages/Buscar";
 
 function App() {
+  const [tieneAcceso, setTieneAcceso] = useState(false);
+  const gestionarLogin = () => {
+    /*     setDatos(dato); // datos del usuario: email, password y token */
+    setTieneAcceso(true);
+    /*     // La variable que indica que está logueado se pone a true
+    setToken(dato.token); */
+    console.log(tieneAcceso);
+  };
+
+  const gestionarLogout = () => {
+    setTieneAcceso(false);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      {/* <img src={logo} alt="logotipo" width="50vh" height="45vh" /> */}
+      <Router>
+        <div className="navbar">
+          {tieneAcceso === false ? (
+            <div>
+              <NavLink className={"navlink"} to="/">
+                Inicio
+              </NavLink>
+              <NavLink className={"navlink"} to="/peliculas">
+                Peliculas
+              </NavLink>
+              <NavLink className={"navlink"} to="/signup">
+                Crear Cuenta
+              </NavLink>
+              <NavLink className={"navlink"} to="/login">
+                Login
+              </NavLink>
+              
+
+            </div>
+          ) : (
+            <div>
+              <NavLink className={"navlink"} to="/">
+                Inicio
+              </NavLink>
+              <NavLink className={"navlink"} to="/peliculas">
+                Peliculas
+              </NavLink>
+              <NavLink className={"navlink"} to="/logout">
+                Logout
+              </NavLink>
+              <NavLink className={"navlink"} to="/usuarios">
+             Carrito
+💳           </NavLink>
+              
+            </div>
+          )}
+        </div>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/peliculas" element={<Peliculas />} />
+          
+          <Route
+            path="/login"
+            element={<Login gestionarLogin={gestionarLogin} />}
+          />
+          <Route
+            path="/logout"
+            element={<Logout gestionarLogout={gestionarLogout} />}
+          />
+          <Route path="/signup" element={<Alta />} />
+          <Route path="/404" element={<Error />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Routes>
+      </Router>
+      
+      <div className="footer">
+      
+
+</div>
+      </div>
+    
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+// import "./App.css";
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Routes,
+//   Navigate,
+//   NavLink,
+//   useLocation,
+// } from "react-router-dom";
+// import Inicio from "./pages/Inicio";
+// import Error from "./pages/Error";
+// import Usuarios from "./pages/Usuarios";
+// import Peliculas from "./pages/Peliculas";
+// import Logout from "./pages/Logout";
+// import Login from "./pages/Login";
+// import Alta from "./pages/Alta";
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Router>
+//         <Navbar />
+//         <Routes>
+//           <Route path="/" element={<Inicio />} />
+//           <Route path="/peliculas" element={<Peliculas />} />
+//           <Route path="/usuarios" element={<Usuarios />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/logout" element={<Logout />} />
+//           <Route path="/signup" element={<Alta />} />
+//           <Route path="/404" element={<Error />} />
+//           <Route path="*" element={<Navigate to="/404" />} />
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// function Navbar() {
+//   const location = useLocation();
+
+//   return (
+//     <div className="navbar">
+//       <NavLink className={"navlink"} to="/">
+//         Inicio
+//       </NavLink>
+//       {location.pathname === "/peliculas" ? (
+//         <>
+//           <NavLink className={"navlink"} to="/login">
+//             Login
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/logout">
+//             Logout
+//           </NavLink>
+//         </>
+//       ) : (
+//         <>
+//           <NavLink className={"navlink"} to="/peliculas">
+//             Peliculas
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/signup">
+//             Crear Cuenta
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/usuarios">
+//             Carrito
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/login">
+//             Login
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/logout">
+//             Logout
+//           </NavLink>
+//         </>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+// import "./App.css";
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Routes,
+//   Navigate,
+//   NavLink,
+// } from "react-router-dom";
+// import Inicio from "./pages/Inicio";
+// import Error from "./pages/Error";
+// import Usuarios from "./pages/Usuarios";
+// import Peliculas from "./pages/Peliculas";
+// import Logout from "./pages/Logout";
+// import Login from "./pages/Login";
+// import Alta from "./pages/Alta";
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Router>
+//         <div className="navbar">
+//           <NavLink className={"navlink"} to="/">
+//             Inicio
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/peliculas">
+//             Peliculas
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/signup">
+//             Crear Cuenta
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/login">
+//             Login
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/logout">
+//             Logout
+//           </NavLink>
+//           <NavLink className={"navlink"} to="/usuarios">
+//             Carrito
+//           </NavLink>
+//         </div>
+
+//         <Routes>
+//           <Route path="/" element={<Inicio />} />
+//           <Route path="/peliculas" element={<Peliculas />} />
+//           <Route path="/usuarios" element={<Usuarios />} />
+//           <Route path="/login" element={<Login />} />
+
+//           <Route path="/logout" element={<Logout />} />
+//           <Route path="/signup" element={<Alta />} />
+//           <Route path="/404" element={<Error />} />
+//           <Route path="*" element={<Navigate to="/404" />} />
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
